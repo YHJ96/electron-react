@@ -1,0 +1,55 @@
+{
+  "name": "electron",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@electron/remote": "^2.1.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron-is-dev": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "wait-on": "^7.2.0",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.9.1",
+    "electron": "^27.0.0"
+  },
+  "scripts": {
+    "start": "concurrently \"cross-env NODE_ENV=development BROWSER=none npm run react:start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "npm run react:build && electron-builder",
+    "build:win": "npm run react:build && electron-builder --win portable --x64",
+    "react:start": "react-scripts start",
+    "react:build": "react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "main": "./public/electron.js",
+  "homepage": "./",
+  "build": {
+    "productName": "react-electron",
+    "asar": true,
+    "appId": "org.sss.electron-react"
+  }
+}
